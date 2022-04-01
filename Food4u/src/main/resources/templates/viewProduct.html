@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Document</title>
+    <style type="text/css">
+     
+    </style>
+</head>
+<body style="background: linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%), url();">
+
+
+<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img th:src="@{/images/logo.png}" width="auto" height="60"
+                 class="d-inline-block align-top" alt=""/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="text-warning nav-link" th:href="@{/}" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="text-warning nav-link" th:href="@{/shop}" href="#">Menu</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="text-warning nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="text-warning nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#"></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="text-warning nav-link" th:href="@{/cart}" href="#">Cart</a>
+                </li>
+                <li class="nav-item active">
+                    <span class="text-warning nav-link" th:text="${cartCount}"></span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="col-sm-7 container" style="margin-top: 15.2%; margin-left:24%;">
+    <div class="row">
+        <div class="col-sm-5  d-flex justify-content-center bg-dark">
+            <img class="mt-5" height="400px" width="400px" src="" th:src="@{${'/productImages/' + product.imageName}}"
+                 alt="">
+        </div>
+        <div class="col-sm-6  mt-7 bg-dark">
+            <h2 class="text-white mt-5" th:text="${product.name}"></h2>
+            <p class="text-white" th:text="${product.category.name}"></p>
+            <h2 class="text-white">₹ <span class="text-white" th:text="${product.price}"></span></h2>
+            <h5 class="text-white">Weight:
+                <spna  th:text="${product.weight}"></spna> grams.
+            </h5>
+            <p class="text-white" th:text="${product.description}"></p>
+            <a href="" th:href="@{/addToCart/{id}(id = ${product.id})}" class="btn btn-warning">Add to cart</a>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
